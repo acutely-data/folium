@@ -331,7 +331,8 @@ class GeoJson(Layer):
         self._template = Template(u"""
             {% macro script(this, kwargs) %}
                 var {{this.get_name()}} = L.geoJson(
-                    {% if this.embed %}{{this.style_data()}}{% else %}"{{this.data}}"{% endif %})
+                    {% if this.embed %}{{this.style_data()}}{% else %}"{{this.data}}"{% endif %},
+                    {onEachFeature: function(feature, layer) { if (feature.properties && feature.properties.popupContent) { layer.bindPopup(feature.properties.popupContent); }}})
                     .addTo({{this._parent.get_name()}});
                 {{this.get_name()}}.setStyle(function(feature) {return feature.properties.style;});
             {% endmacro %}

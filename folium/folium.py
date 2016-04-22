@@ -509,7 +509,7 @@ class Map(LegacyMap):
                    data=None, columns=None, key_on=None, threshold_scale=None,
                    fill_color='blue', fill_opacity=0.6, line_color='black',
                    line_weight=1, line_opacity=1, legend_name="",
-                   topojson=None, reset=False):
+                   topojson=None, reset=False, layer_name=""):
         """
         Apply a GeoJSON overlay to the map.
 
@@ -674,9 +674,9 @@ class Map(LegacyMap):
             }
 
         if topojson:
-            geo_json = TopoJson(geo_data, topojson, style_function=style_function)  # noqa
+            geo_json = TopoJson(geo_data, topojson, style_function=style_function, name=layer_name)  # noqa
         else:
-            geo_json = GeoJson(geo_data, style_function=style_function)
+            geo_json = GeoJson(geo_data, style_function=style_function, name=layer_name)
 
         self.add_children(geo_json)
 
