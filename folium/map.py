@@ -102,7 +102,7 @@ class LegacyMap(MacroElement):
                  tiles='OpenStreetMap', API_key=None, max_zoom=18, min_zoom=1,
                  zoom_start=10, attr=None, min_lat=-90, max_lat=90,
                  min_lon=-180, max_lon=180, detect_retina=False,
-                 crs='EPSG3857', control_scale=False):
+                 crs='EPSG3857', control_scale=False, tile_name=None):
         super(LegacyMap, self).__init__()
         self._name = 'Map'
 
@@ -133,7 +133,7 @@ class LegacyMap(MacroElement):
 
         if tiles:
             self.add_tile_layer(tiles=tiles, min_zoom=min_zoom, max_zoom=max_zoom,
-                                attr=attr, API_key=API_key,
+                                attr=attr, API_key=API_key, name=tile_name,
                                 detect_retina=detect_retina)
 
         self._template = Template(u"""
